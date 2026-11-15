@@ -1,209 +1,384 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import LinkWrapper from '@/components/LinkWrapper.astro';
+
+const tocItems = [
+  { id: 'artist-portfolio', label: 'アーティスト向けポートフォリオサイト' },
+  { id: 'local-sso', label: 'ローカルSSOアプリケーション' },
+  { id: 'line-credit-manager', label: 'LINEクレジットカード決済管理アプリ' },
+  { id: 'orbit', label: 'orbit' },
+  { id: 'mc-civilization-frontier', label: 'Civilization Frontier' },
+  { id: 'vpn-proxy-tunnels', label: 'vpn-proxy-tunnels' },
+  { id: 'forma', label: 'forma' },
+  { id: 'bobo-weird-adventure', label: 'bobo-weird-adventure' },
+  { id: 'yuzuki-fansite', label: 'yuzuki-fansite' },
+  { id: 'fanbook-v2', label: 'fanbook-v2' },
+  { id: 'bobo-online-board-game', label: 'bobo-online-board-game' },
+];
 ---
 
 <BaseLayout title="制作物">
-  <div class="products-view">
-    <h2>
-      アーティスト向けポートフォリオサイト:
-      <LinkWrapper href="https://panmryofficial.vercel.app/">こちら</LinkWrapper>
-    </h2>
+  <div class="products-layout">
+    <aside class="products-toc">
+      <nav aria-label="制作物の目次">
+        <p class="toc-title">目次</p>
+        <ul>
+          {tocItems.map((item) => (
+            <li><a href={`#${item.id}`}>{item.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
 
-    <section>
-      <img src="/img/sharkbrown.html.xdomain.jp.png" alt="アーティスト向けポートフォリオサイトのサイトイメージ" />
+    <div class="products-view">
+      <h2 id="artist-portfolio">
+        アーティスト向けポートフォリオサイト:
+        <LinkWrapper href="https://panmryofficial.vercel.app/">こちら</LinkWrapper>
+      </h2>
 
-      <h3>概要</h3>
+      <section>
+        <img src="/img/sharkbrown.html.xdomain.jp.png" alt="アーティスト向けポートフォリオサイトのサイトイメージ" />
 
-      <p>
-        アーティストである友人が制作したインディーズゲームの作品を紹介する、ポートフォリオサイトを構築しました。
-        本サイトには、アーティストのプロフィール紹介、作品ギャラリー、新着情報の掲載機能があります。 最大の特長は、専門知識がない方でも簡単にコンテンツを更新できる点です。
-        CMS（コンテンツ管理システム）を導入し、HTMLを直接編集することなく、手軽に作品の追加や情報の更新を行えるよう設計しました。
-      </p>
+        <h3>概要</h3>
 
-      <h3>実装のポイント</h3>
+        <p>
+          アーティストである友人が制作したインディーズゲームの作品を紹介する、ポートフォリオサイトを構築しました。
+          本サイトには、アーティストのプロフィール紹介、作品ギャラリー、新着情報の掲載機能があります。 最大の特長は、専門知識がない方でも簡単にコンテンツを更新できる点です。
+          CMS（コンテンツ管理システム）を導入し、HTMLを直接編集することなく、手軽に作品の追加や情報の更新を行えるよう設計しました。
+        </p>
 
-      <p>本サイトはRESTful APIをベースに設計・実装されています。</p>
+        <h3>実装のポイント</h3>
 
-      <h4>CMS：低コストで運用可能なCockpit</h4>
+        <p>本サイトはRESTful APIをベースに設計・実装されています。</p>
 
-      <p>
-        CMSには、PHPサーバーで動作するオープンソースのヘッドレスCMS「<LinkWrapper href="https://getcockpit.com/">Cockpit</LinkWrapper>」を採用しました。
-        これにより、サーバー費用を抑えつつ、柔軟なコンテンツ管理を実現しています。
-      </p>
+        <h4>CMS：低コストで運用可能なCockpit</h4>
 
-      <h4>フロントエンド：AstroによるSSR（サーバーサイドレンダリング）</h4>
+        <p>
+          CMSには、PHPサーバーで動作するオープンソースのヘッドレスCMS「<LinkWrapper href="https://getcockpit.com/">Cockpit</LinkWrapper>」を採用しました。
+          これにより、サーバー費用を抑えつつ、柔軟なコンテンツ管理を実現しています。
+        </p>
 
-      <p>
-        フロントエンドには「<LinkWrapper href="https://astro.build/">Astro</LinkWrapper>」を使用しています。 当初は静的サイトとしての利用を想定していましたが、CMSによる動的なコンテンツ更新の要件を満たすため、最終的にSSR（サーバーサイドレンダリング）モードで動作させています。
-        デプロイには「<LinkWrapper href="https://vercel.com/">Vercel</LinkWrapper>」を利用し、GitHubリポジトリと連携したCI/CD環境を構築しています。
-      </p>
+        <h4>フロントエンド：AstroによるSSR（サーバーサイドレンダリング）</h4>
 
-      <h4>UX改善：作品ギャラリーの遅延読み込み</h4>
+        <p>
+          フロントエンドには「<LinkWrapper href="https://astro.build/">Astro</LinkWrapper>」を使用しています。 当初は静的サイトとしての利用を想定していましたが、CMSによる動的なコンテンツ更新の要件を満たすため、最終的にSSR（サーバーサイドレンダリング）モードで動作させています。
+          デプロイには「<LinkWrapper href="https://vercel.com/">Vercel</LinkWrapper>」を利用し、GitHubリポジトリと連携したCI/CD環境を構築しています。
+        </p>
 
-      <p>
-        作品ギャラリーの画像は、ページの初期表示速度を最適化するため、クライアントサイドで遅延読み込みさせています。
-        最初に表示する作品数を制限し、「Watch More」ボタンがクリックされるたびに非同期で追加の作品を読み込む仕組みです。
-        これにより、軽快なユーザー体験を損なうことなく、多くの作品を掲載できます。
-      </p>
-    </section>
+        <h4>UX改善：作品ギャラリーの遅延読み込み</h4>
 
-    <h2>
-      個人情報をローカルで取り扱うSSOアプリケーション:
-      <LinkWrapper href="https://hashed-potato-v3.vercel.app/#/">こちら</LinkWrapper>
-    </h2>
+        <p>
+          作品ギャラリーの画像は、ページの初期表示速度を最適化するため、クライアントサイドで遅延読み込みさせています。
+          最初に表示する作品数を制限し、「Watch More」ボタンがクリックされるたびに非同期で追加の作品を読み込む仕組みです。
+          これにより、軽快なユーザー体験を損なうことなく、多くの作品を掲載できます。
+        </p>
+      </section>
 
-    <section>
-      <img src="/img/hashed-potato-dev.png" alt="個人情報をローカルで取り扱うSSOアプリケーションのスクリーンショット" />
+      <h2 id="local-sso">
+        個人情報をローカルで取り扱うSSOアプリケーション:
+        <LinkWrapper href="https://hashed-potato-v3.vercel.app/#/">こちら</LinkWrapper>
+      </h2>
 
-      <h3>コンセプト：ローカル中心の新しいSSO</h3>
+      <section>
+        <img src="/img/hashed-potato-dev.png" alt="個人情報をローカルで取り扱うSSOアプリケーションのスクリーンショット" />
 
-      <p>
-        Webサービスが急増する現代において、ユーザーは多数のアカウント管理を強いられています。 既存のシングルサインオン（SSO）はクラウドベースのものが主流ですが、本プロジェクトでは個人情報をローカル環境で安全に取り扱う、新しいSSOの仕組みを考案・開発しました。 これは、各種Web
-        APIを組み合わせることで実現可能です。
-      </p>
+        <h3>コンセプト：ローカル中心の新しいSSO</h3>
 
-      <h3>フロントエンド：PWAとして実装</h3>
+        <p>
+          Webサービスが急増する現代において、ユーザーは多数のアカウント管理を強いられています。 既存のシングルサインオン（SSO）はクラウドベースのものが主流ですが、本プロジェクトでは個人情報をローカル環境で安全に取り扱う、新しいSSOの仕組みを考案・開発しました。 これは、各種Web
+          APIを組み合わせることで実現可能です。
+        </p>
 
-      <p>
-        アプリケーションは、フロントエンドフレームワーク「<LinkWrapper href="https://vuejs.org/">Vue.js</LinkWrapper>」を用いてPWA（プログレッシブウェブアプリ）として構築されています。Vue.jsで生成した静的ファイルをGitHub
-        Pagesで公開しています。主な機能は以下のAPIを活用して実装しました。
-      </p>
-      <ul>
-        <li>
-          <strong>ローカルファイルの操作：</strong><LinkWrapper href="https://developer.chrome.com/docs/capabilities/web-apis/file-system-access?hl=ja">File System Access API</LinkWrapper>
-          を使用し、ローカルファイルの作成や読み書きを実現。
-        </li>
-        <li>
-          <strong>セキュリティ：</strong>ファイル内容の暗号化と復号には、標準技術である
-          <LinkWrapper href="https://developer.mozilla.org/ja/docs/Web/API/Web_Crypto_API">Web Crypto API</LinkWrapper>
-          を利用し、安全性を確保しています。
-        </li>
-      </ul>
+        <h3>フロントエンド：PWAとして実装</h3>
 
-      <h3>バックエンド：エージェントサーバー</h3>
+        <p>
+          アプリケーションは、フロントエンドフレームワーク「<LinkWrapper href="https://vuejs.org/">Vue.js</LinkWrapper>」を用いてPWA（プログレッシブウェブアプリ）として構築されています。Vue.jsで生成した静的ファイルをGitHub
+          Pagesで公開しています。主な機能は以下のAPIを活用して実装しました。
+        </p>
+        <ul>
+          <li>
+            <strong>ローカルファイルの操作：</strong><LinkWrapper href="https://developer.chrome.com/docs/capabilities/web-apis/file-system-access?hl=ja">File System Access API</LinkWrapper>
+            を使用し、ローカルファイルの作成や読み書きを実現。
+          </li>
+          <li>
+            <strong>セキュリティ：</strong>ファイル内容の暗号化と復号には、標準技術である
+            <LinkWrapper href="https://developer.mozilla.org/ja/docs/Web/API/Web_Crypto_API">Web Crypto API</LinkWrapper>
+            を利用し、安全性を確保しています。
+          </li>
+        </ul>
 
-      <p>
-        認証情報を仲介するエージェントサーバーは、当初Express.jsで構築していました。
-        現在は開発フェーズとして、Firebase (Cloud Firestore) と Google Apps Script (GAS) を用いて、HTTPリクエストを処理する簡易的なシステムを運用しています。
-      </p>
-    </section>
+        <h3>バックエンド：エージェントサーバー</h3>
 
-    <h2>LINEで手軽に記録、クレジットカード決済管理アプリ</h2>
+        <p>
+          認証情報を仲介するエージェントサーバーは、当初Express.jsで構築していました。
+          現在は開発フェーズとして、Firebase (Cloud Firestore) と Google Apps Script (GAS) を用いて、HTTPリクエストを処理する簡易的なシステムを運用しています。
+        </p>
+      </section>
 
-    <section>
-      <div class="image-gallery">
-        <div class="image-gallery-inner">
-          <figure>
-            <img src="/img/ly.cf067016.cloudfree.jp.png" alt="決済の手動登録画面" />
-            <figcaption>決済の手動登録画面</figcaption>
-          </figure>
-          <figure>
-            <img src="/img/ly.cf067016.cloudfree.jp_2.png" alt="決済記録の確認画面" />
-            <figcaption>決済記録の確認画面</figcaption>
-          </figure>
-          <figure>
-            <img src="/img/ly.cf067016.cloudfree.jp_3.jpg" alt="LINEでの決済通知画面" />
-            <figcaption>LINEでの決済通知</figcaption>
-          </figure>
+      <h2 id="line-credit-manager">LINEで手軽に記録、クレジットカード決済管理アプリ</h2>
+
+      <section>
+        <div class="image-gallery">
+          <div class="image-gallery-inner">
+            <figure>
+              <img src="/img/ly.cf067016.cloudfree.jp.png" alt="決済の手動登録画面" />
+              <figcaption>決済の手動登録画面</figcaption>
+            </figure>
+            <figure>
+              <img src="/img/ly.cf067016.cloudfree.jp_2.png" alt="決済記録の確認画面" />
+              <figcaption>決済記録の確認画面</figcaption>
+            </figure>
+            <figure>
+              <img src="/img/ly.cf067016.cloudfree.jp_3.jpg" alt="LINEでの決済通知画面" />
+              <figcaption>LINEでの決済通知</figcaption>
+            </figure>
+          </div>
         </div>
-      </div>
 
-      <h3>概要</h3>
+        <h3>概要</h3>
 
-      <p>
-        クレジットカードの利用状況を、毎日使うLINEアプリから手軽に記録・管理できるWebアプリケーションです。
-        カード会社からの利用通知メールをトリガーにLINEで決済内容を通知。ユーザーはチャット画面から支出を記録でき、使いすぎの防止や家計管理の手間を大幅に削減します。
-      </p>
+        <p>
+          クレジットカードの利用状況を、毎日使うLINEアプリから手軽に記録・管理できるWebアプリケーションです。
+          カード会社からの利用通知メールをトリガーにLINEで決済内容を通知。ユーザーはチャット画面から支出を記録でき、使いすぎの防止や家計管理の手間を大幅に削減します。
+        </p>
 
-      <h3>主な機能</h3>
+        <h3>主な機能</h3>
 
-      <ul>
-        <li>
-          <strong>LINE連携による自動通知・登録:</strong><br />
-          カード会社から届く利用通知メールを検知し、即座にLINEへ通知します。受け取ったユーザーは、そのままLINE上で支出情報を登録できます。
-        </li>
-        <li>
-          <strong>Webダッシュボード:</strong><br />
-          記録した決済情報は専用のWebページで一覧表示・確認が可能です。月ごとの集計やデータの絞り込みにも対応しています。
-        </li>
-        <li>
-          <strong>手動登録機能:</strong><br />
-          通知が届かなかった決済や、過去の支出もWeb上のフォームから簡単に追加登録できます。
-        </li>
-      </ul>
+        <ul>
+          <li>
+            <strong>LINE連携による自動通知・登録:</strong><br />
+            カード会社から届く利用通知メールを検知し、即座にLINEへ通知します。受け取ったユーザーは、そのままLINE上で支出情報を登録できます。
+          </li>
+          <li>
+            <strong>Webダッシュボード:</strong><br />
+            記録した決済情報は専用のWebページで一覧表示・確認が可能です。月ごとの集計やデータの絞り込みにも対応しています。
+          </li>
+          <li>
+            <strong>手動登録機能:</strong><br />
+            通知が届かなかった決済や、過去の支出もWeb上のフォームから簡単に追加登録できます。
+          </li>
+        </ul>
 
-      <h3>このアプリで解決できること</h3>
+        <h3>このアプリで解決できること</h3>
 
-      <p>
-        「カードを使うたびに家計簿アプリを開くのが面倒」「いつの間にかカードを使いすぎてしまう」といった課題を、最も身近なコミュニケーションツールであるLINEを活用することで解決。
-        簡単・確実に支出を把握し、スマートな家計管理をサポートします。
-      </p>
-    </section>
+        <p>
+          「カードを使うたびに家計簿アプリを開くのが面倒」「いつの間にかカードを使いすぎてしまう」といった課題を、最も身近なコミュニケーションツールであるLINEを活用することで解決。
+          簡単・確実に支出を把握し、スマートな家計管理をサポートします。
+        </p>
+      </section>
 
-    <h2>その他の制作物</h2>
+      <h2 id="orbit">
+        orbit:
+        <LinkWrapper href="https://github.com/proxaxis/orbit">GitHub</LinkWrapper>
+      </h2>
 
-    <section class="other-products">
-      <ul class="repo-list">
-        <li>
-          <a class="repo-name" href="https://github.com/proxaxis/orbit" target="_blank" rel="noopener noreferrer">orbit</a>
-          <p class="repo-desc">タスクと時間を一元管理し、集中して実行するためのWebアプリ</p>
-          <span class="repo-lang">JavaScript</span>
-        </li>
-        <li>
-          <a class="repo-name" href="https://github.com/proxaxis/mc-civilization-frontier" target="_blank" rel="noopener noreferrer">mc-civilization-frontier</a>
-          <p class="repo-desc">Build Craft や Industrial Craft 2 などの名作MODを現代に再現する Minecraft MOD プロジェクト</p>
-          <span class="repo-lang">Java</span>
-        </li>
-        <li>
-          <a class="repo-name" href="https://github.com/proxaxis/vpn-proxy-tunnels" target="_blank" rel="noopener noreferrer">vpn-proxy-tunnels</a>
-          <p class="repo-desc">VPNクライアントを代行するプロキシサーバコンテナと、認証情報を送信する拡張機能のスクリプト</p>
-          <span class="repo-lang">JavaScript</span>
-        </li>
-        <li>
-          <a class="repo-name" href="https://github.com/proxaxis/forma" target="_blank" rel="noopener noreferrer">forma</a>
-          <p class="repo-desc">Markdown でドキュメントを作成するためのツール</p>
-          <span class="repo-lang">JavaScript</span>
-        </li>
-        <li>
-          <a class="repo-name" href="https://github.com/proxaxis/bobo-weird-adventure" target="_blank" rel="noopener noreferrer">bobo-weird-adventure</a>
-          <p class="repo-desc">Vue + Phaser で作成した2Dゲーム</p>
-          <span class="repo-lang">JavaScript</span>
-          <a class="repo-demo" href="https://bobo-weird-adventure.vercel.app" target="_blank" rel="noopener noreferrer">デモを見る</a>
-        </li>
-        <li>
-          <a class="repo-name" href="https://github.com/proxaxis/yuzuki-fansite" target="_blank" rel="noopener noreferrer">yuzuki-fansite</a>
-          <p class="repo-desc">YUZUKI さんの非公式ファンサイト</p>
-          <span class="repo-lang">Vue</span>
-          <a class="repo-demo" href="https://yuzuki-fansite.vercel.app" target="_blank" rel="noopener noreferrer">サイトを見る</a>
-        </li>
-        <li>
-          <a class="repo-name" href="https://github.com/proxaxis/fanbook-v2" target="_blank" rel="noopener noreferrer">fanbook-v2</a>
-          <p class="repo-desc">同人誌コレクションをオンラインで手軽に整理できるWebアプリ</p>
-          <span class="repo-lang">Vue</span>
-          <a class="repo-demo" href="https://fanbook-v2.vercel.app" target="_blank" rel="noopener noreferrer">サイトを見る</a>
-        </li>
-        <li>
-          <a class="repo-name" href="https://github.com/proxaxis/bobo-online-board-game" target="_blank" rel="noopener noreferrer">bobo-online-board-game</a>
-          <p class="repo-desc">オンラインで遊べるボードゲーム (フロントエンド + API 構成)</p>
-          <span class="repo-lang">JavaScript</span>
-          <a class="repo-demo" href="https://bobo-online-board-game.vercel.app" target="_blank" rel="noopener noreferrer">デモを見る</a>
-        </li>
-      </ul>
-    </section>
+      <section>
+        <h3>概要</h3>
+
+        <p>
+          タスクと時間を一元管理するためのカレンダーアプリケーション "Orbit Calendar" です.
+          月表示や週タイムライン表示の切り替えや、イベントの作成や編集や複製や検索やテンプレート登録やカレンダー共有など、実用的なカレンダー機能を一式備えています.
+        </p>
+
+        <h3>技術構成</h3>
+
+        <p>
+          Quasar Framework (Vue 3) をベースに構築しており、Capacitor を導入することで Web だけでなく Android アプリとしてもビルド可能にしています.
+          繰り返し予定の処理には rrule、日本の祝日判定には holiday_jp を利用しています.
+          また @mlc-ai/web-llm によるブラウザ内 LLM 機能の組み込みや、Docker によるコンテナ化にも対応しています.
+        </p>
+      </section>
+
+      <h2 id="mc-civilization-frontier">
+        Civilization Frontier (Minecraft MOD):
+        <LinkWrapper href="https://github.com/proxaxis/mc-civilization-frontier">GitHub</LinkWrapper>
+      </h2>
+
+      <section>
+        <h3>概要</h3>
+
+        <p>
+          "Civilization Frontier: Beyond the Cataclysm" は Java 製の Minecraft MOD プロジェクトです.
+          Build Craft や Industrial Craft 2 や Better Dungeons や Project Red などの往年の名作 MOD を、現代の環境向けに再現することを目指しています.
+        </p>
+
+        <h3>世界観とゲーム要素</h3>
+
+        <p>
+          開拓や産業や経済や RPG やボスや生活の要素を内包した世界を舞台に、プレイヤーは 守護者 や 暗殺者 や 魔道士 や 聖職者 の職業を選択して参加します.
+          浮遊宮殿や幽霊船や地下都市やカタコンベなど、かつての文明の遺構が散りばめられた広大な世界観も特徴です.
+        </p>
+      </section>
+
+      <h2 id="vpn-proxy-tunnels">
+        vpn-proxy-tunnels:
+        <LinkWrapper href="https://github.com/proxaxis/vpn-proxy-tunnels">GitHub</LinkWrapper>
+      </h2>
+
+      <section>
+        <h3>概要</h3>
+
+        <p>
+          VPN クライアントを導入できない環境でも、プロキシ経由で目的のネットワークへアクセスできるようにする基盤スクリプト群です.
+          VPN クライアントの代わりにプロキシサーバが通信を代行する構成になっています.
+        </p>
+
+        <h3>技術構成</h3>
+
+        <p>
+          Docker Compose で Squid ベースの worker プロキシコンテナと、Let's Encrypt 証明書を利用する nginx ingress、コンテナ群を管理する Python 製オーケストレーターを起動します.
+          ブラウザ側では Chromium 拡張機能が認証情報をプロキシへ送信し、プロキシ認証を代行します.
+        </p>
+      </section>
+
+      <h2 id="forma">
+        forma:
+        <LinkWrapper href="https://github.com/proxaxis/forma">GitHub</LinkWrapper>
+      </h2>
+
+      <section>
+        <h3>概要</h3>
+
+        <p>
+          VS Code 拡張機能 "Forma: Build Markdown Document" です. Markdown でドキュメントを作成するためのツールで、エディタ内でのプレビュー表示や、Puppeteer を利用した PDF エクスポート機能を提供します.
+        </p>
+
+        <h3>技術構成</h3>
+
+        <p>
+          ドキュメントの見た目はテンプレート (html) とスタイル (scss) でカスタマイズでき、プロジェクト設定を初期化するコマンドも用意しています.
+          GitHub Actions による公開ワークフローや、Docker による動作環境も整備しています.
+        </p>
+      </section>
+
+      <h2 id="bobo-weird-adventure">
+        bobo-weird-adventure:
+        <LinkWrapper href="https://github.com/proxaxis/bobo-weird-adventure">GitHub</LinkWrapper>
+        <LinkWrapper href="https://bobo-weird-adventure.vercel.app">デモ</LinkWrapper>
+      </h2>
+
+      <section>
+        <h3>概要</h3>
+
+        <p>
+          Vue + Phaser 4 で作成した 2D アドベンチャーゲームです.
+          キャラクターやシナリオ進行やオーバーレイ UI を Vue コンポーネントとして構成し、Phaser によるゲーム描画と組み合わせています. Vercel で公開中です.
+        </p>
+      </section>
+
+      <h2 id="yuzuki-fansite">
+        yuzuki-fansite:
+        <LinkWrapper href="https://github.com/proxaxis/yuzuki-fansite">GitHub</LinkWrapper>
+        <LinkWrapper href="https://yuzuki-fansite.vercel.app">サイト</LinkWrapper>
+      </h2>
+
+      <section>
+        <h3>概要</h3>
+
+        <p>
+          YUZUKI さんの非公式ファンサイトです.
+          Astro + Vue (@astrojs/vue) で構築しており、Auth0 によるユーザー認証やサイトマップ生成や sharp による画像最適化や Vercel Analytics を導入しています.
+        </p>
+      </section>
+
+      <h2 id="fanbook-v2">
+        fanbook-v2:
+        <LinkWrapper href="https://github.com/proxaxis/fanbook-v2">GitHub</LinkWrapper>
+        <LinkWrapper href="https://fanbook-v2.vercel.app">サイト</LinkWrapper>
+      </h2>
+
+      <section>
+        <h3>概要</h3>
+
+        <p>
+          同人誌コレクションをオンラインで手軽に整理するための Web アプリ "Fanbook v2" です. Vue CLI で構築しています.
+        </p>
+      </section>
+
+      <h2 id="bobo-online-board-game">
+        bobo-online-board-game:
+        <LinkWrapper href="https://github.com/proxaxis/bobo-online-board-game">GitHub</LinkWrapper>
+        <LinkWrapper href="https://bobo-online-board-game.vercel.app">デモ</LinkWrapper>
+      </h2>
+
+      <section>
+        <h3>概要</h3>
+
+        <p>
+          オンラインで対戦できるボードゲームです.
+          PeerJS (WebRTC) による P2P 通信でプレイヤー同士を接続し、NAT 越えのための TURN サーバ (api と server) も実装しています.
+          PlayingCard や SpecialCards などのカードロジックや、Game クラスによるゲーム進行管理を含みます.
+        </p>
+      </section>
+    </div>
   </div>
 </BaseLayout>
 
 <style lang="scss">
+@use '@/styles/variables.scss' as var;
+
+.products-layout {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+
+  @include var.narrow() {
+    grid-template-columns: 1fr;
+  }
+}
+
+.products-toc {
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+
+  .toc-title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 2px solid var(--border);
+
+    li a {
+      display: block;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-1);
+      border-left: 2px solid transparent;
+      margin-left: -2px;
+      transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+      &:hover {
+        color: var(--accent);
+        border-left-color: var(--accent);
+      }
+    }
+  }
+
+  @include var.narrow() {
+    position: static;
+    margin-bottom: 1rem;
+  }
+}
+
 .products-view {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0;
 }
 
 h2 {
   border-bottom: 1px solid var(--border);
   padding-bottom: 0.5rem;
+  scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 
 h3, h4 {
@@ -221,64 +396,6 @@ img {
     width: 1000px;
     height: 600px;
     display: flex;
-  }
-}
-
-.other-products {
-  .repo-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
-
-    li {
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
-      padding: 1rem;
-      transition: box-shadow 0.2s ease-in-out;
-
-      &:hover {
-        box-shadow: 0 0 10px var(--shadow);
-      }
-    }
-  }
-
-  .repo-name {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--primary);
-    word-break: break-all;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .repo-desc {
-    font-size: 0.875rem;
-    color: var(--text-1);
-    margin: 0.5rem 0;
-  }
-
-  .repo-lang {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: var(--text-1);
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    padding: 0.1rem 0.6rem;
-  }
-
-  .repo-demo {
-    display: inline-block;
-    font-size: 0.75rem;
-    margin-left: 0.5rem;
-    color: var(--accent);
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 </style>
