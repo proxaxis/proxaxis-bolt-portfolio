@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/zenn/:path*",
+      "destination": "https://zenn.dev/:path*"
+    },
+    {
+      "source": "/whatistoday/:path*",
+      "destination": "https://api.whatistoday.cyou/:path*"
+    },
+    {
+      "source": "/open-meteo/:path*",
+      "destination": "https://api.open-meteo.com/:path*"
+    },
+    {
+      "source": "/((?!api|static|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

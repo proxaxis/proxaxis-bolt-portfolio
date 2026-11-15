@@ -1,0 +1,25 @@
+name: portfolio
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: portfolio_app
+    env_file:
+      - .env
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./app:/app
+    ports:
+      - "4321:4321"
+
+  # Operation Agent
+  orchestrator:
+    image: proxaxis/orchestrator:latest
+    container_name: portfolio_orchestrator
+    shm_size: "2gb"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/ws

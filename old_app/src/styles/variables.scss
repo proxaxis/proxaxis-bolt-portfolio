@@ -1,0 +1,80 @@
+@use 'sass:color';
+@use 'sass:map';
+
+// フォント
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap'); // 'Noto Sans JP'
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap'); // 'Kosugi Maru'
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono'); // 'Ubuntu Mono'
+@import url('https://fonts.googleapis.com/css?family=Sawarabi+Mincho'); // 'Sawarabi Mincho'
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c'); // 'M PLUS Rounded 1c'
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+1p'); // 'M PLUS 1p'
+@import url('https://fonts.googleapis.com/css?family=Sawarabi+Gothic'); // 'Sawarabi Gothic'
+@import url('https://fonts.googleapis.com/css?family=Kosugi'); // 'Kosugi'
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP'); // 'Noto Serif JP'
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP'); // 'Noto Sans JP'
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap'); // 'DM Mono'
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&display=swap'); // 'Anton SC'
+
+// サイズ定数
+$size: (
+  header-height: 60px,
+  border-radius: 6px,
+  vw-max-width: 1024px,
+  vw-min-width: 300px,
+  main-margin-top: 2rem,
+  main-margin-bottom: 2rem
+);
+
+@mixin spread-size-vars() {
+  @each $key, $value in $size {
+    --#{$key}: #{$value};
+  }
+}
+
+// カラーコード定数
+$base-color-lt-bg: #ffffff;
+$base-color-dk-bg: #000000;
+$base-color-lt-text: #333333;
+$base-color-dk-text: #ffffff;
+$themes: (
+  light: (
+    bg-0: $base-color-lt-bg,
+		bg-1: color.scale($base-color-lt-bg, $lightness: -10%),
+		bg-2: color.scale($base-color-lt-bg, $lightness: -20%),
+		bg-3: color.scale($base-color-lt-bg, $lightness: -30%),
+    text-0: $base-color-lt-text,
+		text-1: color.scale($base-color-lt-text, $lightness: 60%),
+		border: rgba(0, 0, 0, 0.3),
+		shadow: rgba(0, 0, 0, 0.3),
+    primary: #0000ff,
+		danger: #ca0000,
+    accent: #ff3434
+  ),
+  dark: (
+    bg-0: $base-color-dk-bg,
+		bg-1: color.scale($base-color-dk-bg, $lightness: 10%),
+		bg-2: color.scale($base-color-dk-bg, $lightness: 20%),
+		bg-3: color.scale($base-color-dk-bg, $lightness: 30%),
+    text-0: $base-color-dk-text,
+		text-1: color.scale($base-color-dk-text, $lightness: -60%),
+		border: rgba(255, 255, 255, 0.3),
+		shadow: rgba(255, 255, 255, 0.3),
+    primary: #0000af,
+		danger: #a50000,
+    accent: #ff3434
+  )
+);
+
+@mixin spread-theme-vars($theme-name) {
+  $theme-map: map.get($themes, $theme-name);
+  @each $key, $value in $theme-map {
+    --#{$key}: #{$value};
+  }
+}
+
+// モバイルの時に適用するスタイル
+@mixin narrow() {
+  @media (max-width: #{map.get($size, vw-max-width)}) {
+    @content;
+  }
+}
