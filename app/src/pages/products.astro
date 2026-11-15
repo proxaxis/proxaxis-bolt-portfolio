@@ -140,6 +140,57 @@ import LinkWrapper from '@/components/LinkWrapper.astro';
         簡単・確実に支出を把握し、スマートな家計管理をサポートします。
       </p>
     </section>
+
+    <h2>その他の制作物</h2>
+
+    <section class="other-products">
+      <ul class="repo-list">
+        <li>
+          <a class="repo-name" href="https://github.com/proxaxis/orbit" target="_blank" rel="noopener noreferrer">orbit</a>
+          <p class="repo-desc">タスクと時間を一元管理し、集中して実行するためのWebアプリ</p>
+          <span class="repo-lang">JavaScript</span>
+        </li>
+        <li>
+          <a class="repo-name" href="https://github.com/proxaxis/mc-civilization-frontier" target="_blank" rel="noopener noreferrer">mc-civilization-frontier</a>
+          <p class="repo-desc">Build Craft や Industrial Craft 2 などの名作MODを現代に再現する Minecraft MOD プロジェクト</p>
+          <span class="repo-lang">Java</span>
+        </li>
+        <li>
+          <a class="repo-name" href="https://github.com/proxaxis/vpn-proxy-tunnels" target="_blank" rel="noopener noreferrer">vpn-proxy-tunnels</a>
+          <p class="repo-desc">VPNクライアントを代行するプロキシサーバコンテナと、認証情報を送信する拡張機能のスクリプト</p>
+          <span class="repo-lang">JavaScript</span>
+        </li>
+        <li>
+          <a class="repo-name" href="https://github.com/proxaxis/forma" target="_blank" rel="noopener noreferrer">forma</a>
+          <p class="repo-desc">Markdown でドキュメントを作成するためのツール</p>
+          <span class="repo-lang">JavaScript</span>
+        </li>
+        <li>
+          <a class="repo-name" href="https://github.com/proxaxis/bobo-weird-adventure" target="_blank" rel="noopener noreferrer">bobo-weird-adventure</a>
+          <p class="repo-desc">Vue + Phaser で作成した2Dゲーム</p>
+          <span class="repo-lang">JavaScript</span>
+          <a class="repo-demo" href="https://bobo-weird-adventure.vercel.app" target="_blank" rel="noopener noreferrer">デモを見る</a>
+        </li>
+        <li>
+          <a class="repo-name" href="https://github.com/proxaxis/yuzuki-fansite" target="_blank" rel="noopener noreferrer">yuzuki-fansite</a>
+          <p class="repo-desc">YUZUKI さんの非公式ファンサイト</p>
+          <span class="repo-lang">Vue</span>
+          <a class="repo-demo" href="https://yuzuki-fansite.vercel.app" target="_blank" rel="noopener noreferrer">サイトを見る</a>
+        </li>
+        <li>
+          <a class="repo-name" href="https://github.com/proxaxis/fanbook-v2" target="_blank" rel="noopener noreferrer">fanbook-v2</a>
+          <p class="repo-desc">同人誌コレクションをオンラインで手軽に整理できるWebアプリ</p>
+          <span class="repo-lang">Vue</span>
+          <a class="repo-demo" href="https://fanbook-v2.vercel.app" target="_blank" rel="noopener noreferrer">サイトを見る</a>
+        </li>
+        <li>
+          <a class="repo-name" href="https://github.com/proxaxis/bobo-online-board-game" target="_blank" rel="noopener noreferrer">bobo-online-board-game</a>
+          <p class="repo-desc">オンラインで遊べるボードゲーム (フロントエンド + API 構成)</p>
+          <span class="repo-lang">JavaScript</span>
+          <a class="repo-demo" href="https://bobo-online-board-game.vercel.app" target="_blank" rel="noopener noreferrer">デモを見る</a>
+        </li>
+      </ul>
+    </section>
   </div>
 </BaseLayout>
 
@@ -170,6 +221,64 @@ img {
     width: 1000px;
     height: 600px;
     display: flex;
+  }
+}
+
+.other-products {
+  .repo-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+
+    li {
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      transition: box-shadow 0.2s ease-in-out;
+
+      &:hover {
+        box-shadow: 0 0 10px var(--shadow);
+      }
+    }
+  }
+
+  .repo-name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--primary);
+    word-break: break-all;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .repo-desc {
+    font-size: 0.875rem;
+    color: var(--text-1);
+    margin: 0.5rem 0;
+  }
+
+  .repo-lang {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--text-1);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 0.1rem 0.6rem;
+  }
+
+  .repo-demo {
+    display: inline-block;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+    color: var(--accent);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>
