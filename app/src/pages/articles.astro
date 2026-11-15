@@ -1,0 +1,8 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ArticlesView from '@/components/ArticlesView.vue';
+---
+
+<BaseLayout title="記事">
+  <ArticlesView client:load />
+</BaseLayout>
